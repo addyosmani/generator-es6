@@ -16,6 +16,7 @@ var Es6Generator = module.exports = function Es6Generator(args, options, config)
 
 util.inherits(Es6Generator, yeoman.generators.Base);
 
+/*
 Es6Generator.prototype.askFor = function askFor() {
   var cb = this.async();
 
@@ -35,6 +36,7 @@ Es6Generator.prototype.askFor = function askFor() {
     cb();
   }.bind(this));
 };
+*/
 
 Es6Generator.prototype.app = function app() {
   this.mkdir('app');
