@@ -29,13 +29,13 @@ Es6Generator.prototype.askFor = function askFor() {
 
   var prompts = [{
     type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
+    name: 'es6Transpiler',
+    message: 'Use ES6 Transpiler? (classes, destructuring etc.)',
     default: true
   }];
 
   this.prompt(prompts, function (props) {
-    this.someOption = props.someOption;
+    this.es6Transpiler = props.es6Transpiler;
 
     cb();
   }.bind(this));
@@ -56,14 +56,21 @@ Es6Generator.prototype.gruntfile = function gruntfile() {
   this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
+Es6Generator.prototype.tasks = function tasks() {
+  this.mkdir('app/tasks');
+  this.mkdir('app/tasks/options');
+  this.bulkDirectory('tasks', 'tasks');
+};
+
+
 Es6Generator.prototype.sampleModule = function sampleModule() {
   this.mkdir('app/lib');
-  this.mkdir('app/lib/my_library');
+  this.mkdir('app/lib/library');
   this.mkdir('app/tmp');
 
-  this.copy('my_library.js','app/lib/my_library.js');
-  this.copy('shout.js','app/lib/my_library/shout.js');
-  this.copy('ssshh.js','app/lib/my_library/ssshh.js');
+  this.copy('my_library.js','app/lib/library.js');
+  this.copy('shout.js','app/lib/library/shout.js');
+  this.copy('ssshh.js','app/lib/library/ssshh.js');
 };
 
 Es6Generator.prototype.projectfiles = function projectfiles() {
