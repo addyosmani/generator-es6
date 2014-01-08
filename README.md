@@ -44,6 +44,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ### Versions
 
+* 0.0.2 - Gruntfile, latest version of grunt-es6-module-transpiler, functional module sample files > build step
 * 0.0.1 - basic scaffold for an ES6 module transpiler project
 
 

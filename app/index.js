@@ -20,6 +20,10 @@ util.inherits(Es6Generator, yeoman.generators.Base);
 Es6Generator.prototype.askFor = function askFor() {
   var cb = this.async();
 
+  // Welcome
+  console.log('I include ES6 Module Transpiler, a Gruntfile.js and a sample module.');
+
+
   // have Yeoman greet the user.
   console.log(this.yeoman);
 
