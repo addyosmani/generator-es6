@@ -1,5 +1,12 @@
 {
   "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "private": true,
+  "version": "0.6.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-es6-module-transpiler": "git@github.com:thomasboyt/grunt-es6-module-transpiler.git",
+    "grunt-contrib-concat": "~0.3.0",
+  },
+  "dependencies": {},
+  "main": "dist/commonjs/main.js"
 }

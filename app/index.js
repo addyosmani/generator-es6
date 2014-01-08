@@ -44,6 +44,16 @@ Es6Generator.prototype.app = function app() {
   this.copy('_bower.json', 'bower.json');
 };
 
+Es6Generator.prototype.sampleModule = function sampleModule() {
+  this.mkdir('app/lib');
+  this.mkdir('app/lib/my_library');
+  this.mkdir('app/tmp');
+
+  this.copy('my_library.js','app/lib/my_library.js');
+  this.copy('shout.js','app/lib/my_library/shout.js');
+  this.copy('ssshh.js','app/lib/my_library/ssshh.js');
+};
+
 Es6Generator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');

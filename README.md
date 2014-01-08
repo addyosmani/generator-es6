@@ -1,7 +1,8 @@
 # generator-es6 [![Build Status](https://secure.travis-ci.org/addyosmani/generator-es6.png?branch=master)](https://travis-ci.org/addyosmani/generator-es6)
 
-A generator for [Yeoman](http://yeoman.io).
+An ES6 project generator for [Yeoman](http://yeoman.io).
 
+Note: this project has not yet been released. Don't use it!
 
 ## Getting Started
 
@@ -40,6 +41,10 @@ $ yo es6
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+
+### Versions
+
+* 0.0.1 - basic scaffold for an ES6 module transpiler project
 
 
 ## License
