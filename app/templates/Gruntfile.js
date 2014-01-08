@@ -8,8 +8,8 @@ module.exports = function(grunt) {
         type: 'amd',
         files: [{
           expand: true,
-          cwd: 'lib/',
-          src: ['**/*.js'],
+          cwd: 'app',
+          src: ['lib/**/*.js'],
           dest: 'tmp/',
           ext: '.amd.js'
         }]
@@ -19,8 +19,8 @@ module.exports = function(grunt) {
         type: 'cjs',
         files: [{
           expand: true,
-          cwd: 'lib/',
-          src: ['my_library/*.js'],
+          cwd: 'app',
+          src: ['lib/my_library/*.js'],
           dest: 'dist/commonjs/',
           ext: '.js'
         },
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     },
     browser: {
       dist: {
-        src: ["vendor/loader.js", "dist/my_library.amd.js"],
+        src: ["app/vendor/loader.js", "dist/my_library.amd.js"],
         dest: "dist/my_library.js",
         options: {
           barename: "my_library",

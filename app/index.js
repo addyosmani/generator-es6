@@ -16,7 +16,7 @@ var Es6Generator = module.exports = function Es6Generator(args, options, config)
 
 util.inherits(Es6Generator, yeoman.generators.Base);
 
-/*
+
 Es6Generator.prototype.askFor = function askFor() {
   var cb = this.async();
 
@@ -36,14 +36,20 @@ Es6Generator.prototype.askFor = function askFor() {
     cb();
   }.bind(this));
 };
-*/
+
 
 Es6Generator.prototype.app = function app() {
   this.mkdir('app');
   this.mkdir('app/templates');
+  this.mkdir('app/loader');
 
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');
+  this.copy('loader.js', 'app/loader/loader.js');
+};
+
+Es6Generator.prototype.gruntfile = function gruntfile() {
+  this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
 Es6Generator.prototype.sampleModule = function sampleModule() {
