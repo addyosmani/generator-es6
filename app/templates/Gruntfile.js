@@ -1,72 +1,53 @@
 module.exports = function(grunt) {
-  grunt.loadNpmTasks("grunt-es6-module-transpiler");
-  grunt.loadNpmTasks("grunt-contrib-concat");
-
-  grunt.initConfig({
-    transpile: {
-      amd: {
-        type: 'amd',
-        files: [{
-          expand: true,
-          cwd: 'app',
-          src: ['lib/**/*.js'],
-          dest: 'tmp/',
-          ext: '.amd.js'
-        }]
-      },
-
-      commonjs: {
-        type: 'cjs',
-        files: [{
-          expand: true,
-          cwd: 'app',
-          src: ['lib/my_library/*.js'],
-          dest: 'dist/commonjs/',
-          ext: '.js'
-        },
-        {
-          src: ['lib/my_library.js'],
-          dest: 'dist/commonjs/main.js'
-        }]
-      }
-    },
-    concat: {
-      amd: {
-        src: "tmp/**/*.amd.js",
-        dest: "dist/my_library.amd.js"
-      },
-    },
-    browser: {
-      dist: {
-        src: ["app/vendor/loader.js", "dist/my_library.amd.js"],
-        dest: "dist/my_library.js",
-        options: {
-          barename: "my_library",
-          namespace: "MyLibrary"
-        }
-      }
-    }
+  require('load-grunt-tasks')(grunt);
+  var config = require('load-grunt-config')(grunt, {
+    configPath: 'tasks/options',
+    init: false
   });
 
-  grunt.registerMultiTask('browser', "Export a module to the window", function() {
-    var opts = this.options();
-    this.files.forEach(function(f) {
-      var output = ["(function(globals) {"];
+  grunt.loadTasks('tasks');
 
-      output.push.apply(output, f.src.map(grunt.file.read));
+  this.registerTask('default', ['build']);
 
-      output.push(grunt.template.process(
-        'window.<%= namespace %> = requireModule("<%= barename %>");', { 
-        data: {
-          namespace: opts.namespace,
-          barename: opts.barename
-        }
-      }));
-      output.push('})(window);');
+// Run client-side tests on the command line.
+  this.registerTask('test', 'Runs tests through the command line using PhantomJS', [
+    'build', 'tests', 'connect'
+  ]);
 
-      grunt.file.write(f.dest, grunt.template.process(output.join("\n")));
-    });
-  });
+  // Run a server. This is ideal for running the QUnit tests in the browser.
+  this.registerTask('server', ['build', 'tests', 'connect', 'watch:server']);
 
-  grunt.registerTask("default", ["transpile", "concat:amd", "browser"]);
-}
+
+  // Build test files
+  this.registerTask('tests', 'Builds the test package', ['concat:deps', 'browserify:tests',
+                    'transpile:testsAmd', 'transpile:testsCommonjs', 'buildTests:dist']);
+
+  // Build a new version of the library
+  this.registerTask('build', 'Builds a distributable version of <%= cfg.name %>',
+                    ['clean', 'transpile:amd', 'transpile:commonjs', 'concat:amd',
+                      'concat:browser', 'browser:dist', 'uglify:browser']);
+
+  // Custom phantomjs test task
+  this.registerTask('test:phantom', "Runs tests through the command line using PhantomJS", [
+                    'build', 'tests', 'mocha_phantomjs']);
+
+  // Custom Node test task
+  this.registerTask('test:node', ['build', 'tests', 'mochaTest']);
+
+  this.registerTask('test', ['build', 'tests', 'mocha_phantomjs', 'mochaTest']);
+
+  // Custom YUIDoc task
+  this.registerTask('docs', ['yuidoc']);
+
+  config.env = process.env;
+  config.pkg = grunt.file.readJSON('package.json');
+
+  // Load custom tasks from NPM
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-mocha-phantomjs');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-yuidoc');
+
+  // Merge config into emberConfig, overwriting existing settings
+  grunt.initConfig(config);
+};
