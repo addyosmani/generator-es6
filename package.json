@@ -1,6 +1,6 @@
 {
   "name": "generator-es6",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An ES6 project generator for Yeoman",
   "keywords": [
     "yeoman-generator"
