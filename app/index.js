@@ -29,13 +29,13 @@ Es6Generator.prototype.askFor = function askFor() {
 
   var prompts = [{
     type: 'confirm',
-    name: 'es6Transpiler',
-    message: 'Use ES6 Transpiler? (classes, destructuring etc.)',
+    name: 'includeTraceur',
+    message: 'Include Traceur for more ES6 features?',
     default: true
   }];
 
   this.prompt(prompts, function (props) {
-    this.es6Transpiler = props.es6Transpiler;
+    this.includeTraceur = props.includeTraceur;
 
     cb();
   }.bind(this));
@@ -53,7 +53,7 @@ Es6Generator.prototype.app = function app() {
 };
 
 Es6Generator.prototype.gruntfile = function gruntfile() {
-  this.copy('Gruntfile.js', 'Gruntfile.js');
+  this.template('Gruntfile.js', 'Gruntfile.js');
 };
 
 Es6Generator.prototype.tasks = function tasks() {
