@@ -1,14 +1,13 @@
 module.exports = {
 	options: {
-	  // traceur options here
+	    sourceMaps: true
 	},
 	custom: {
-	    files: {
-	        'dist/all.js': ['lib/**']
-	    }
+		files: [{
+		    expand: true,
+		    cwd: 'app',
+		    src: 'lib/*.traceur.js',
+		    dest: 'tmp/traceured/'
+		}]
 	}
 };
-
-
-
-

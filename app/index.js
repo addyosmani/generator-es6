@@ -53,15 +53,12 @@ Es6Generator.prototype.app = function app() {
 };
 
 Es6Generator.prototype.gruntfile = function gruntfile() {
-  this.template('Gruntfile.js', 'Gruntfile.js');
+  this.template('Gruntfile.js');
 };
 
 Es6Generator.prototype.tasks = function tasks() {
-  this.mkdir('app/tasks');
-  this.mkdir('app/tasks/options');
   this.bulkDirectory('tasks', 'tasks');
 };
-
 
 Es6Generator.prototype.sampleModule = function sampleModule() {
   this.mkdir('app/lib');
@@ -71,6 +68,7 @@ Es6Generator.prototype.sampleModule = function sampleModule() {
   this.copy('my_library.js','app/lib/library.js');
   this.copy('shout.js','app/lib/library/shout.js');
   this.copy('ssshh.js','app/lib/library/ssshh.js');
+  this.copy('traceur_file.js','app/lib/class.traceur.js');
 };
 
 Es6Generator.prototype.projectfiles = function projectfiles() {
