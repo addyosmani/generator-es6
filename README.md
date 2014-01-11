@@ -1,6 +1,6 @@
 # generator-es6 [![Build Status](https://secure.travis-ci.org/addyosmani/generator-es6.png?branch=master)](https://travis-ci.org/addyosmani/generator-es6)
 
-An ES6 project generator for [Yeoman](http://yeoman.io).
+An ES6 project generator for [Yeoman](http://yeoman.io). Provides tooling for libraries that use the ES6 module transpiler and a compatible folder structure.
 
 Note: this project has not yet been released. Don't use it!
 
@@ -35,6 +35,15 @@ Finally, initiate the generator:
 ```
 $ yo es6
 ```
+
+### Usage
+
+
+* `grunt build` - Output AMD, CommonJS, and loader-wrapped (browser) versions of the project.
+* `grunt tests` - Build AMD and CommonJS tests.
+* `grunt test` - Run QUnit tests on the command-line.
+* `grunt server` - Runs a server from the server's root. Navigate to `localhost:8000/test/` to run tests in the browser. Also auto-rebuilds the project when a file is changed.
+
 
 ### Getting To Know Yeoman
 
