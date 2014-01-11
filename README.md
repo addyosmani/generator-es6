@@ -1,6 +1,6 @@
 # generator-es6 [![Build Status](https://secure.travis-ci.org/addyosmani/generator-es6.png?branch=master)](https://travis-ci.org/addyosmani/generator-es6)
 
-An ES6 project generator for [Yeoman](http://yeoman.io). Provides tooling for libraries that use the ES6 module transpiler and a compatible folder structure. Traceur is optional.
+An ES6 project generator for [Yeoman](http://yeoman.io). Provides tooling for libraries that use the ES6 module transpiler and a compatible folder structure. Traceur support is baked in as an optional add-on.
 
 Note: this project has not yet been released. Don't use it!
 
